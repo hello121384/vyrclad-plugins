@@ -2,7 +2,7 @@
 import hashlib
 import io
 import json
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 import re
 import zipfile
 
@@ -68,17 +68,29 @@ for path in sorted((root / "packages").glob("*.zip")):
                 release["contract"] = manifest["contract"]
                 if isinstance(manifest.get("name"), str):
                     release["name"] = manifest["name"]
-        if "plugin.go" in archive.namelist() and "info.json" in archive.namelist() and archive.getinfo("info.json").file_size <= 64 << 10:
+        members = {item.filename: item for item in archive.infolist() if not item.is_dir()}
+        candidates = [PurePosixPath(name) for name, item in members.items()
+                      if PurePosixPath(name).name == "info.json" and item.file_size <= 64 << 10
+                      and str(PurePosixPath(name).with_name("plugin.go")) in members]
+        if release["contract"] == "files" and len(candidates) == 1:
+            description = candidates[0]
+            source = members[str(description.with_name("plugin.go"))]
             try:
-                info = json.loads(archive.read("info.json"))
+                info = json.loads(archive.read(str(description)))
             except (ValueError, UnicodeError):
                 info = None
-            if isinstance(info, dict):
+            if isinstance(info, dict) and all(isinstance(info.get(key), str) and info[key].strip()
+                                              for key in ("name", "module", "version")):
                 for key in ("name", "module", "introduction"):
                     if isinstance(info.get(key), str):
                         release[key] = info[key]
-                if info.get("module") == "AssetHandle" and 0 < archive.getinfo("plugin.go").file_size <= 256 << 10:
-                    release["contract"] = "asset-handle/go-v1"
+                if info["module"] == "AssetHandle" and 0 < source.file_size <= 256 << 10:
+                    try:
+                        archive.read(source).decode("utf-8")
+                    except UnicodeDecodeError:
+                        pass
+                    else:
+                        release["contract"] = "asset-handle/go-v1"
     releases.append(release)
 
 encoded = (json.dumps({"schema": "vyrclad.plugins/v1", "plugins": releases}, indent=2) + "\n").encode()
