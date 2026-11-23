@@ -1,3 +1,5 @@
 plugins/**/*.json -text
 packages/*.zip binary
+plugin/**/*.go text eol=lf
+plugin/**/*.json text eol=lf
 vyrclad-index.json text eol=lf

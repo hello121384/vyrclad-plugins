@@ -1,0 +1,8 @@
+{
+  "name": "TitleReview",
+  "module": "AssetHandle",
+  "version": "v1.0",
+  "introduction": "给已记录但缺少页面标题的 HTTP 资产打标签，方便人工复核。",
+  "parameter": "",
+  "help": "可填写自定义标签，留空时使用“缺少页面标题”。"
+}
