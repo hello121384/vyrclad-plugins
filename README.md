@@ -21,3 +21,7 @@ ScopeSentry 的资产处理入口取得已有资产的指针。TitleReview 使�
 | [TitleReview](plugin/AssetHandle/TitleReview) | 1.0.0 | 标记缺少标题的 HTTP 资产。其他类型和已有标题的样本保留原标签。 |
 | [team.inventory](packages/team.inventory@1.2.0.zip) | 1.2.0 | 按服务编号归并 CSV 记录，保留服务名称、负责人和原始编号，内含两份示例清单。 |
 | [vyrclad.compose-services](packages/vyrclad.compose-services@1.1.0.zip) | 1.1.0 | 读取 Compose 清单中声明的服务及镜像。 |
+| [vyrclad.completeness](packages/vyrclad.completeness@1.0.0.zip) | 1.0.0 | 分批检查已归档观测的空字段，回查来源及记录号。 |
+| [vyrclad.source-conflicts](packages/vyrclad.source-conflicts@1.0.0.zip) | 1.0.0 | 整批比较同一资产在不同来源中给出的非空字段值，返回一对存在分歧的原始记录。 |
+
+这两个数据核对模块读取包内的 `plugin.json`。可在自己的版本中用 `selectFields` 选择要核对的观测字段。空数组表示使用观测已有的全部字段，显式选择缺失的字段会计入完整性检查。工作台从已有盘点任务启动核对，任务冻结选定的两份规则包版本和摘要。
