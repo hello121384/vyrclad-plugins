@@ -18,10 +18,22 @@
       "sha256": "87b4652b39621cf5c414203b7a3666fbd086e555bfa96e1de355d710d8a33019"
     },
     {
+      "id": "vyrclad.completeness",
+      "version": "1.0.0",
+      "format": "zip",
+      "sha256": "62f65e902b91e1d7f8404109219e13cb93d2dd4a56da8810cdc1a18eae11dc52"
+    },
+    {
       "id": "vyrclad.compose-services",
       "version": "1.1.0",
       "format": "zip",
       "sha256": "7d43a39c1131210742b0b883b47faaa54f2158a888748a486f03980a19316482"
+    },
+    {
+      "id": "vyrclad.source-conflicts",
+      "version": "1.0.0",
+      "format": "zip",
+      "sha256": "66b522a2bb593b254928b194b8bf59423c2060c211fe82aa3197faf6f25732f5"
     }
   ]
 }
