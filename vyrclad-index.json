@@ -7,6 +7,7 @@
       "format": "zip",
       "sha256": "4ebe7c093bb6c338e2adfad161e2825470ddc46238f8fc6d54a3dbcf5180b7bb",
       "hasSource": true,
+      "contract": "asset-handle/go-v1",
       "name": "TitleReview",
       "module": "AssetHandle",
       "introduction": "\u7ed9\u5df2\u8bb0\u5f55\u4f46\u7f3a\u5c11\u9875\u9762\u6807\u9898\u7684 HTTP \u8d44\u4ea7\u6253\u6807\u7b7e\uff0c\u65b9\u4fbf\u4eba\u5de5\u590d\u6838\u3002"
@@ -15,25 +16,33 @@
       "id": "team.inventory",
       "version": "1.2.0",
       "format": "zip",
-      "sha256": "87b4652b39621cf5c414203b7a3666fbd086e555bfa96e1de355d710d8a33019"
+      "sha256": "87b4652b39621cf5c414203b7a3666fbd086e555bfa96e1de355d710d8a33019",
+      "contract": "asset-columns/v1",
+      "name": "\u670d\u52a1\u53f0\u8d26\u5b57\u6bb5\u6620\u5c04"
     },
     {
       "id": "vyrclad.completeness",
       "version": "1.0.0",
       "format": "zip",
-      "sha256": "62f65e902b91e1d7f8404109219e13cb93d2dd4a56da8810cdc1a18eae11dc52"
+      "sha256": "62f65e902b91e1d7f8404109219e13cb93d2dd4a56da8810cdc1a18eae11dc52",
+      "contract": "observation-completeness/v1",
+      "name": "\u5b57\u6bb5\u5b8c\u6574\u6027"
     },
     {
       "id": "vyrclad.compose-services",
       "version": "1.1.0",
       "format": "zip",
-      "sha256": "7d43a39c1131210742b0b883b47faaa54f2158a888748a486f03980a19316482"
+      "sha256": "7d43a39c1131210742b0b883b47faaa54f2158a888748a486f03980a19316482",
+      "contract": "compose-services/v1",
+      "name": "Compose \u670d\u52a1\u58f0\u660e"
     },
     {
       "id": "vyrclad.source-conflicts",
       "version": "1.0.0",
       "format": "zip",
-      "sha256": "66b522a2bb593b254928b194b8bf59423c2060c211fe82aa3197faf6f25732f5"
+      "sha256": "66b522a2bb593b254928b194b8bf59423c2060c211fe82aa3197faf6f25732f5",
+      "contract": "cross-source-conflicts/v1",
+      "name": "\u8de8\u6765\u6e90\u5b57\u6bb5\u51b2\u7a81"
     }
   ]
 }
