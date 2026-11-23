@@ -1,0 +1,3 @@
+plugins/**/*.json -text
+packages/*.zip binary
+vyrclad-index.json text eol=lf
