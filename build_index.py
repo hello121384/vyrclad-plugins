@@ -58,6 +58,16 @@ for path in sorted((root / "packages").glob("*.zip")):
     if path.name in source_packages:
         release["hasSource"] = True
     with zipfile.ZipFile(path) as archive:
+        release["contract"] = "files"
+        if "plugin.json" in archive.namelist() and archive.getinfo("plugin.json").file_size <= 64 << 10:
+            try:
+                manifest = json.loads(archive.read("plugin.json"))
+            except (ValueError, UnicodeError):
+                manifest = None
+            if isinstance(manifest, dict) and isinstance(manifest.get("contract"), str):
+                release["contract"] = manifest["contract"]
+                if isinstance(manifest.get("name"), str):
+                    release["name"] = manifest["name"]
         if "plugin.go" in archive.namelist() and "info.json" in archive.namelist() and archive.getinfo("info.json").file_size <= 64 << 10:
             try:
                 info = json.loads(archive.read("info.json"))
@@ -67,6 +77,8 @@ for path in sorted((root / "packages").glob("*.zip")):
                 for key in ("name", "module", "introduction"):
                     if isinstance(info.get(key), str):
                         release[key] = info[key]
+                if info.get("module") == "AssetHandle" and 0 < archive.getinfo("plugin.go").file_size <= 256 << 10:
+                    release["contract"] = "asset-handle/go-v1"
     releases.append(release)
 
 encoded = (json.dumps({"schema": "vyrclad.plugins/v1", "plugins": releases}, indent=2) + "\n").encode()
